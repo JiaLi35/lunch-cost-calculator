@@ -1,0 +1,8 @@
+/* Mobile-first tweaks */
+.keypad button {
+  min-height: 64px;
+  font-size: 1.25rem;
+}
+.amount {
+  font-variant-numeric: tabular-nums;
+}

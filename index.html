@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lunch with Friends — Costing Calculator</title>
+
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link href="style.css" />
+  </head>
+  <body class="bg-body">
+    <!-- Header / Navbar -->
+    <nav
+      class="navbar navbar-expand-lg border-bottom bg-body-tertiary sticky-top"
+    >
+      <div class="container">
+        <span class="navbar-brand fw-semibold">🍽️ Lunch with Friends</span>
+
+        <div class="ms-auto d-flex align-items-center gap-3">
+          <span class="text-secondary small" id="now" aria-live="polite"
+            >--</span
+          >
+
+          <div class="form-check form-switch m-0">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              role="switch"
+              id="themeToggle"
+            />
+            <label class="form-check-label small" for="themeToggle"
+              >Light / Dark Mode</label
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container py-3">
+      <div class="row g-3">
+        <!-- Left: Calculator -->
+        <section class="col-12 col-lg-6">
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h2 class="h5">Item Entry</h2>
+
+              <div class="mb-2">
+                <label for="entry" class="form-label">Current Item</label>
+                <input
+                  id="entry"
+                  class="form-control form-control-lg text-end"
+                  type="text"
+                  inputmode="decimal"
+                  placeholder="0"
+                />
+              </div>
+
+              <div class="keypad row row-cols-4 g-2">
+                <div class="col">
+                  <button class="btn btn-outline-primary w-100" data-key="7">
+                    7
+                  </button>
+                </div>
+                <div class="col">
+                  <button class="btn btn-outline-primary w-100" data-key="8">
+                    8
+                  </button>
+                </div>
+                <div class="col">
+                  <button class="btn btn-outline-primary w-100" data-key="9">
+                    9
+                  </button>
+                </div>
+                <div class="col">
+                  <button
+                    class="btn btn-outline-secondary w-100"
+                    data-action="back"
+                  >
+                    ⌫
+                  </button>
+                </div>
+
+                <div class="col">
+                  <button class="btn btn-outline-primary w-100" data-key="4">
+                    4
+                  </button>
+                </div>
+                <div class="col">
+                  <button class="btn btn-outline-primary w-100" data-key="5">
+                    5
+                  </button>
+                </div>
+                <div class="col">
+                  <button class="btn btn-outline-primary w-100" data-key="6">
+                    6
+                  </button>
+                </div>
+                <div class="col">
+                  <button
+                    class="btn btn-outline-secondary w-100"
+                    data-action="clear"
+                  >
+                    CE
+                  </button>
+                </div>
+
+                <div class="col">
+                  <button class="btn btn-outline-primary w-100" data-key="1">
+                    1
+                  </button>
+                </div>
+                <div class="col">
+                  <button class="btn btn-outline-primary w-100" data-key="2">
+                    2
+                  </button>
+                </div>
+                <div class="col">
+                  <button class="btn btn-outline-primary w-100" data-key="3">
+                    3
+                  </button>
+                </div>
+                <div class="col" rowspan="2">
+                  <button class="btn btn-success w-100" data-action="plus">
+                    +
+                  </button>
+                </div>
+
+                <div class="col col-6">
+                  <button class="btn btn-outline-primary w-100" data-key="0">
+                    0
+                  </button>
+                </div>
+                <div class="col">
+                  <button class="btn btn-outline-primary w-100" data-key=".">
+                    .
+                  </button>
+                </div>
+              </div>
+
+              <hr />
+              <div>
+                <h3 class="h6 mb-1">Items in meal</h3>
+                <ul id="itemsList" class="list-group small"></ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Right: Taxes + Totals -->
+        <section class="col-12 col-lg-6">
+          <div class="card shadow-sm mb-3">
+            <div class="card-body">
+              <h2 class="h5">Taxes</h2>
+
+              <div class="form-check form-switch mb-2">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="sstToggle"
+                />
+                <label class="form-check-label" for="sstToggle">SST</label>
+              </div>
+              <div id="sstInputs" class="collapse">
+                <div class="input-group mb-3" style="max-width: 240px">
+                  <span class="input-group-text">SST %</span>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="sstRate"
+                    min="0"
+                    step="0.01"
+                    value="8"
+                  />
+                </div>
+              </div>
+
+              <div class="form-check form-switch mb-2">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  id="svcToggle"
+                />
+                <label class="form-check-label" for="svcToggle"
+                  >Service Tax</label
+                >
+              </div>
+              <div id="svcInputs" class="collapse">
+                <div class="input-group" style="max-width: 240px">
+                  <span class="input-group-text">Service %</span>
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="svcRate"
+                    min="0"
+                    step="0.01"
+                    value="10"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h2 class="h5">Totals (live)</h2>
+              <dl class="row mb-0">
+                <dt class="col-6">Subtotal</dt>
+                <dd class="col-6 text-end amount" id="subtotal">RM0.00</dd>
+                <dt class="col-6">SST</dt>
+                <dd class="col-6 text-end amount" id="sstAmount">RM0.00</dd>
+                <dt class="col-6">Service</dt>
+                <dd class="col-6 text-end amount" id="svcAmount">RM0.00</dd>
+                <dt class="col-6 fw-semibold">Grand Total</dt>
+                <dd class="col-6 text-end amount fw-semibold" id="grandTotal">
+                  RM0.00
+                </dd>
+              </dl>
+
+              <div class="d-flex gap-2 pt-3">
+                <button id="newMealBtn" class="btn btn-primary flex-fill">
+                  Add New Meal
+                </button>
+                <button id="resetBtn" class="btn btn-outline-danger flex-fill">
+                  Reset All
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Logs -->
+      <section class="mt-3">
+        <div class="d-flex align-items-center gap-2 mb-2">
+          <h2 class="h5 m-0">Meal Log</h2>
+          <button
+            id="clearLogBtn"
+            class="btn btn-sm btn-outline-secondary ms-auto"
+          >
+            Clear log
+          </button>
+        </div>
+        <div id="log" class="list-group"></div>
+      </section>
+    </main>
+
+    <!-- Bootstrap javascript -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="functions.js"></script>
+  </body>
+</html>
