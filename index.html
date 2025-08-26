@@ -23,10 +23,12 @@
         <span class="navbar-brand fw-semibold">🍽️ Lunch with Friends</span>
 
         <div class="ms-auto d-flex align-items-center gap-3">
+          <!-- the time now -->
           <span class="text-secondary small" id="now" aria-live="polite"
             >--</span
           >
 
+          <!-- toggle for light / dark mode -->
           <div class="form-check form-switch m-0">
             <input
               class="form-check-input"
@@ -61,6 +63,7 @@
                 />
               </div>
 
+              <!-- keypads of calculator -->
               <div class="keypad row row-cols-4 g-2">
                 <div class="col">
                   <button class="btn btn-outline-primary w-100" data-key="7">
@@ -142,8 +145,10 @@
                   </button>
                 </div>
               </div>
+              <!-- end of keypads -->
 
               <hr />
+              <!-- the items in meal -->
               <div>
                 <h3 class="h6 mb-1">Items in meal</h3>
                 <ul id="itemsList" class="list-group small"></ul>
@@ -151,13 +156,16 @@
             </div>
           </div>
         </section>
+        <!-- end of calculator -->
 
         <!-- Right: Taxes + Totals -->
         <section class="col-12 col-lg-6">
+          <!-- taxes start -->
           <div class="card shadow-sm mb-3">
             <div class="card-body">
               <h2 class="h5">Taxes</h2>
 
+              <!-- toggle to enable sst -->
               <div class="form-check form-switch mb-2">
                 <input
                   class="form-check-input"
@@ -166,6 +174,7 @@
                 />
                 <label class="form-check-label" for="sstToggle">SST</label>
               </div>
+              <!-- the value of sst (if enabled) -->
               <div id="sstInputs" class="collapse">
                 <div class="input-group mb-3" style="max-width: 240px">
                   <span class="input-group-text">SST %</span>
@@ -180,6 +189,7 @@
                 </div>
               </div>
 
+              <!-- toggle to enable service tax -->
               <div class="form-check form-switch mb-2">
                 <input
                   class="form-check-input"
@@ -190,6 +200,7 @@
                   >Service Tax</label
                 >
               </div>
+              <!-- the value of the service tax (if enabled) -->
               <div id="svcInputs" class="collapse">
                 <div class="input-group" style="max-width: 240px">
                   <span class="input-group-text">Service %</span>
@@ -205,7 +216,9 @@
               </div>
             </div>
           </div>
+          <!-- taxes end -->
 
+          <!-- totals of my meal (total b4 tax, taxes, total after taxes) -->
           <div class="card shadow-sm">
             <div class="card-body">
               <h2 class="h5">Totals (live)</h2>
@@ -223,16 +236,20 @@
               </dl>
 
               <div class="d-flex gap-2 pt-3">
+                <!-- add new meal button -->
                 <button id="newMealBtn" class="btn btn-primary flex-fill">
                   Add New Meal
                 </button>
+                <!-- reset all button -->
                 <button id="resetBtn" class="btn btn-outline-danger flex-fill">
                   Reset All
                 </button>
               </div>
             </div>
           </div>
+          <!-- end of total -->
         </section>
+        <!-- end of taxes + total -->
       </div>
 
       <!-- Logs -->
@@ -248,6 +265,7 @@
         </div>
         <div id="log" class="list-group"></div>
       </section>
+      <!-- end of logs -->
     </main>
 
     <!-- Bootstrap javascript -->
